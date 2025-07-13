@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Sistema de Gestión de Trabajadores";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <h1 class="display-4">Sistema de Gestión de Trabajadores</h1>
+                <p class="lead">Bienvenido al sistema de mantenimiento de trabajadores</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Acceso Rápido</h5>
+                                <p class="card-text">Gestiona los trabajadores del sistema</p>
+                                <a asp-controller="Trabajadores" asp-action="Index" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-users"></i> Ir a Trabajadores
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

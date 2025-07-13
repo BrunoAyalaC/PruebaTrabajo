@@ -1,0 +1,98 @@
+@model IEnumerable<WebApplication1.Controllers.TrabajadorDTO>
+
+@{
+    ViewData["Title"] = "Trabajadores";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Gestión de Trabajadores</h3>
+                    <div class="card-tools">
+                        <a asp-action="Create" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Nuevo Trabajador
+                        </a>
+                    </div>
+                </div>
+                                <div class="card-body">
+                    <form method="get" class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="filtroSexo" class="form-label">Filtrar por Sexo:</label>
+                            <select name="filtroSexo" id="filtroSexo" class="form-select" onchange="this.form.submit()">
+                                <option value="">Todos</option>
+                                @if (ViewBag.FiltroSexo == "M")
+                                {
+                                    <option value="M" selected>Masculino</option>
+                                }
+                                else
+                                {
+                                    <option value="M">Masculino</option>
+                                }
+                                @if (ViewBag.FiltroSexo == "F")
+                                {
+                                    <option value="F" selected>Femenino</option>
+                                }
+                                else
+                                {
+                                    <option value="F">Femenino</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <a asp-action="Index" class="btn btn-secondary">Limpiar Filtro</a>
+                        </div>
+                    </form>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" id="tablaTrabajadores">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Documento</th>
+                                    <th>Nombres</th>
+                                    <th>Sexo</th>
+                                    <th>Departamento</th>
+                                    <th>Provincia</th>
+                                    <th>Distrito</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="@(item.Sexo == "M" ? "table-primary" : "table-danger")">
+                                        <td>@item.Id</td>
+                                        <td>@item.TipoDocumento - @item.NumeroDocumento</td>
+                                        <td>@item.Nombres</td>
+                                        <td>
+                                            <span class="badge @(item.Sexo == "M" ? "bg-primary" : "bg-danger")">
+                                                @(item.Sexo == "M" ? "Masculino" : "Femenino")
+                                            </span>
+                                        </td>
+                                        <td>@item.Departamento</td>
+                                        <td>@item.Provincia</td>
+                                        <td>@item.Distrito</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

@@ -1,0 +1,67 @@
+@model WebApplication1.Models.Trabajadore
+
+@{
+    ViewData["Title"] = "Eliminar Trabajador";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title text-danger">Confirmar Eliminación</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h4 class="alert-heading">Se eliminra un USUARIO</h4>
+                        <p>Está seguro que desea eliminar este trabajador? Esta acción no se puede deshacer.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">ID:</dt>
+                                <dd class="col-sm-8">@Model.Id</dd>
+
+                                <dt class="col-sm-4">Documento:</dt>
+                                <dd class="col-sm-8">@Model.TipoDocumento - @Model.NumeroDocumento</dd>
+
+                                <dt class="col-sm-4">Nombres:</dt>
+                                <dd class="col-sm-8">@Model.Nombres</dd>
+
+                                <dt class="col-sm-4">Sexo:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge @(Model.Sexo == "M" ? "bg-primary" : "bg-danger")">
+                                        @(Model.Sexo == "M" ? "Masculino" : "Femenino")
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Departamento:</dt>
+                                <dd class="col-sm-8">@Model.IdDepartamentoNavigation?.NombreDepartamento</dd>
+
+                                <dt class="col-sm-4">Provincia:</dt>
+                                <dd class="col-sm-8">@Model.IdProvinciaNavigation?.NombreProvincia</dd>
+
+                                <dt class="col-sm-4">Distrito:</dt>
+                                <dd class="col-sm-8">@Model.IdDistritoNavigation?.NombreDistrito</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete" class="mt-4">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está completamente seguro de eliminar este trabajador?')">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

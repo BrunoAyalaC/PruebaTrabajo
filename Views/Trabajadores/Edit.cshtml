@@ -1,0 +1,139 @@
+@model WebApplication1.Models.Trabajadore
+
+@{
+    ViewData["Title"] = "Editar Trabajador";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Trabajador</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="TipoDocumento" class="control-label">Tipo Documento</label>
+                                    <select asp-for="TipoDocumento" class="form-select">
+                                        <option value="">Seleccione...</option>
+                                        <option value="DNI">DNI</option>
+                                        <option value="CE">CE</option>
+                                        <option value="PAS">PAS</option>
+                                    </select>
+                                    <span asp-validation-for="TipoDocumento" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="NumeroDocumento" class="control-label">Número Documento</label>
+                                    <input asp-for="NumeroDocumento" class="form-control" />
+                                    <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Nombres" class="control-label">Nombres</label>
+                                    <input asp-for="Nombres" class="form-control" />
+                                    <span asp-validation-for="Nombres" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Sexo" class="control-label">Sexo</label>
+                                    <select asp-for="Sexo" class="form-select">
+                                        <option value="">Seleccione...</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdDepartamento" class="control-label">Departamento</label>
+                                    <select asp-for="IdDepartamento" id="departamento" class="form-select">
+                                        <option value="">Seleccione...</option>
+                                        @foreach (var dept in ViewBag.Departamentos)
+                                        {
+                                            if (dept.Id == Model.IdDepartamento)
+                                            {
+                                                <option value="@dept.Id" selected>@dept.NombreDepartamento</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@dept.Id">@dept.NombreDepartamento</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdProvincia" class="control-label">Provincia</label>
+                                    <select asp-for="IdProvincia" class="form-select">
+                                        <option value="">Seleccione...</option>
+                                        @foreach (var prov in ViewBag.Provincias)
+                                        {
+                                            if (prov.Id == Model.IdProvincia)
+                                            {
+                                                <option value="@prov.Id" selected>@prov.NombreProvincia</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@prov.Id">@prov.NombreProvincia</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span asp-validation-for="IdProvincia" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdDistrito" class="control-label">Distrito</label>
+                                    <select asp-for="IdDistrito" class="form-select">
+                                        <option value="">Seleccione...</option>
+                                        @foreach (var dist in ViewBag.Distritos)
+                                        {
+                                            if (dist.Id == Model.IdDistrito)
+                                            {
+                                                <option value="@dist.Id" selected>@dist.NombreDistrito</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@dist.Id">@dist.NombreDistrito</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span asp-validation-for="IdDistrito" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 
