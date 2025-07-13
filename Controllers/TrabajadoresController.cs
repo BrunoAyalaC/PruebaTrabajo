@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.DTOs;
 
 namespace WebApplication1.Controllers
 {
@@ -155,17 +156,5 @@ namespace WebApplication1.Controllers
         {
             return _context.Trabajadores.Any(e => e.Id == id);
         }
-    }
-
-    public class TrabajadorDTO
-    {
-        public int Id { get; set; }
-        public string? TipoDocumento { get; set; }
-        public string? NumeroDocumento { get; set; }
-        public string? Nombres { get; set; }
-        public string? Sexo { get; set; }
-        public string? Departamento { get; set; }
-        public string? Provincia { get; set; }
-        public string? Distrito { get; set; }
     }
 } 
